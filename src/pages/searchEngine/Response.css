@@ -1,0 +1,32 @@
+
+.header {
+    display: grid;
+    grid-template-areas: "first second third";
+    grid-template-columns: 220px 60% 1fr;
+}
+.toodle_name{
+    grid-area: first;
+}
+.search-bar{
+    grid-area: second;
+}
+.user_section{
+    grid-area: third;
+}
+
+@media (max-width:843px){
+    .header {
+        padding-top: 20px;
+        grid-template-areas: "first second" "third third";
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .toodle_name{
+        grid-area: first;
+    }
+    .search-bar{
+        grid-area: third;
+    }
+    .user_section{
+        grid-area: second;
+    }
+}
