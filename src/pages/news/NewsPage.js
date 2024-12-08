@@ -33,7 +33,15 @@ const NewsPage = () => {
   async function fetchData() {
     setLoadingNews(true);
     try {
-      const response1 = await fetch(`https://newsapi.org/v2/top-headlines?country=us&language=en&apiKey=${API_KEY}`);
+      const response1 = await fetch(
+        `https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/top-headlines/sources?&language=en&apiKey=${API_KEY}`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
       const formateResponse1 = await response1.json();
       setNewsData(formateResponse1.articles || []);
     } catch (error) {
@@ -47,7 +55,15 @@ const NewsPage = () => {
   async function filterNews(value) {
     setLoadingCatNews(true);
     try {
-      const response2 = await fetch(`https://newsapi.org/v2/top-headlines/sources?category=${value}&language=en&apiKey=${API_KEY}`);
+      const response2 = await fetch(
+        `https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/top-headlines/sources?category=${value}&language=en&apiKey=${API_KEY}`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
       const formateResponse2 = await response2.json();
       setCatNewsData(formateResponse2.sources || []);
     } catch (error) {

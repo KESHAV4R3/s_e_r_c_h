@@ -18,7 +18,15 @@ const useHome = () => {
     async function fetchNews() {
         try {
             setHomeNewsLoading(true)
-            const response = await fetch(`https://newsapi.org/v2/top-headlines?country=us&language=en&apiKey=5cd30a0c92d149999e76bf07386f9943`)
+            const response = await fetch(
+                `https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/top-headlines?country=us&language=en&apiKey=5cd30a0c92d149999e76bf07386f9943`,
+                {
+                  method: 'GET',
+                  headers: {
+                    'Content-Type': 'application/json',
+                  },
+                }
+              );
             const formateResponse = await response.json();
             dispatch(changeNewsData(formateResponse.articles));
             setHomeNewsLoading(false);
